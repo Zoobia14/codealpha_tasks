@@ -2,36 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Flashcard Quiz App</title>
+  <title>Fitness Tracker App</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#28a745">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#28a745">
+
 </head>
 <body>
-  <div class="container">
-    <h1>Flashcard Quiz App</h1>
+  <h1>🏋️‍♀️ Fitness Tracker</h1>
 
-    <div class="flashcard">
-      <div id="card-front" class="card">Question</div>
-      <div id="card-back" class="card hidden">Answer</div>
-      <button onclick="toggleAnswer()">Show Answer</button>
-    </div>
+  <form id="fitnessForm">
+    <label>Exercise Type:</label>
+    <input type="text" id="exercise" required><br>
 
-    <div class="controls">
-      <button onclick="prevCard()">Previous</button>
-      <button onclick="nextCard()">Next</button>
-    </div>
+    <label>Duration (minutes):</label>
+    <input type="number" id="duration" required><br>
 
-    <div class="manage">
-      <h2>Add New Flashcard</h2>
-      <input type="text" id="newQuestion" placeholder="Enter Question">
-      <input type="text" id="newAnswer" placeholder="Enter Answer">
-      <button onclick="addFlashcard()">Add</button>
-    </div>
+    <label>Calories Burned:</label>
+    <input type="number" id="calories" required><br>
 
-    <div class="edit-delete">
-      <button onclick="editFlashcard()">Edit Current</button>
-      <button onclick="deleteFlashcard()">Delete Current</button>
-    </div>
-  </div>
+    <button type="submit">Add Entry</button>
+  </form>
+
+  <h2>Daily Log</h2>
+  <ul id="logList"></ul>
+
+  <h2>Summary</h2>
+  <div id="summary"></div>
 
   <script src="script.js"></script>
 </body>

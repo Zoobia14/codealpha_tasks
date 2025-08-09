@@ -1,52 +1,41 @@
 body {
   font-family: Arial;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  background: #f0eeee;
+  margin: 20px;
+  padding: 10px;
+  background: #beb189;
 }
 
-.container {
-  max-width: 400px;
-  background: rgb(59, 92, 212);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px gray;
-  text-align: center;
-}
-
-.flashcard {
-  margin: 20px 0;
-}
-
-.card {
-  background: #4f9ecd;
-  padding: 20px;
-  margin-bottom: 10px;
+form {
+  background: #d5e16a;
+  padding: 15px;
   border-radius: 8px;
-  min-height: 60px;
-}
-
-.hidden {
-  display: none;
+  box-shadow: 0 0 5px #aaa;
+  max-width: 300px;
 }
 
 input {
-  margin: 5px 0;
   width: 100%;
-  padding: 8px;
+  margin-bottom: 10px;
+  padding: 5px;
 }
 
 button {
-  margin: 5px;
-  padding: 10px;
+  padding: 8px 12px;
+  background-color: #28a745;
+  color: rgb(249, 246, 248);
   border: none;
-  background: #3399ff;
-  color: rgba(255, 255, 255, 0.801);
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-button:hover {
-  background: #267acc;
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: rgb(215, 231, 118);
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
 }

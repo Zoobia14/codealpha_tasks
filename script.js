@@ -1,66 +1,51 @@
-let flashcards = [
-  { question: "What is HTML?", answer: "HyperText Markup Language" },
-  { question: "What is CSS?", answer: "Cascading Style Sheets" }
-];
+let logList = document.getElementById("logList");
+let summaryDiv = document.getElementById("summary");
 
-let currentIndex = 0;
-const front = document.getElementById("card-front");
-const back = document.getElementById("card-back");
+let fitnessData = JSON.parse(localStorage.getItem("fitnessData")) || [];
 
-function showCard(index) {
-  front.textContent = flashcards[index].question;
-  back.textContent = flashcards[index].answer;
-  back.classList.add("hidden");
+function updateUI() {
+  logList.innerHTML = "";
+  let totalCalories = 0;
+  let totalMinutes = 0;
+
+  fitnessData.forEach((entry, index) => {
+    let li = document.createElement("li");
+    li.textContent = `${entry.exercise} - ${entry.duration} mins - ${entry.calories} cal`;
+    logList.appendChild(li);
+
+    totalCalories += parseInt(entry.calories);
+    totalMinutes += parseInt(entry.duration);
+  });
+
+  summaryDiv.innerHTML = `
+    <strong>Total Time:</strong> ${totalMinutes} mins<br>
+    <strong>Total Calories:</strong> ${totalCalories} cal
+  `;
+
+  localStorage.setItem("fitnessData", JSON.stringify(fitnessData));
 }
 
-function toggleAnswer() {
-  back.classList.toggle("hidden");
-}
+document.getElementById("fitnessForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-function nextCard() {
-  if (currentIndex < flashcards.length - 1) {
-    currentIndex++;
-    showCard(currentIndex);
-  }
-}
+  let exercise = document.getElementById("exercise").value;
+  let duration = document.getElementById("duration").value;
+  let calories = document.getElementById("calories").value;
 
-function prevCard() {
-  if (currentIndex > 0) {
-    currentIndex--;
-    showCard(currentIndex);
-  }
-}
+  fitnessData.push({ exercise, duration, calories });
 
-function addFlashcard() {
-  const q = document.getElementById("newQuestion").value;
-  const a = document.getElementById("newAnswer").value;
-  if (q && a) {
-    flashcards.push({ question: q, answer: a });
-    currentIndex = flashcards.length - 1;
-    showCard(currentIndex);
-    document.getElementById("newQuestion").value = "";
-    document.getElementById("newAnswer").value = "";
-  }
-}
+  updateUI();
 
-function editFlashcard() {
-  const q = prompt("Edit Question:", flashcards[currentIndex].question);
-  const a = prompt("Edit Answer:", flashcards[currentIndex].answer);
-  if (q && a) {
-    flashcards[currentIndex] = { question: q, answer: a };
-    showCard(currentIndex);
-  }
-}
+  // Clear form
+  this.reset();
+});
 
-function deleteFlashcard() {
-  if (flashcards.length > 1) {
-    flashcards.splice(currentIndex, 1);
-    currentIndex = Math.max(0, currentIndex - 1);
-    showCard(currentIndex);
-  } else {
-    alert("At least one flashcard is required!");
-  }
+// Load data on startup
+updateUI();
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js').then(function() {
+      console.log("Service Worker Registered!");
+    });
+  });
 }
-
-// Show first card when page loads
-showCard(currentIndex);
