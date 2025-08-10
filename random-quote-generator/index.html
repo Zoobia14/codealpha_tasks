@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Random Quote Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <main class="card" aria-live="polite">
+    <div id="quoteCard" class="quote-wrap visible">
+      <p id="quoteText" class="quote">Loading…</p>
+      <p id="quoteAuthor" class="author"></p>
+
+    </div>
+
+    <div class="controls">
+      <button id="newQuoteBtn" class="btn">New Quote</button>
+      <button id="tweetBtn" class="btn secondary">Share</button>
+    </div>
+
+    <div class="meta">Click <strong>New Quote</strong> for another quote</div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
